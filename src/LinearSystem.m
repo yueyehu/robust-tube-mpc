@@ -27,7 +27,11 @@ classdef LinearSystem < handle
         function x_new = propagate(obj, x, u) 
             x_new = obj.A * x + obj.B * u;
         end
-
+        
+        function x_new = propagate1(obj, x, u) 
+            x_new = obj.A * x + obj.B * u;
+        end
+        
         function Xmpi = compute_MPIset(obj, Xc, Uc) 
             [F, G, nc] = convert_Poly2Mat(Xc, Uc);
             Fpi = @(i) (F+G*obj.K)*obj.Ak^i;

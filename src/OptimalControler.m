@@ -143,7 +143,7 @@ classdef OptimalControler < handle
         
         function [C_ineq1_add, C_ineq2_add] = add_ineq_constraint(obj, Xadd, k_add)
             % add a new constraint at time step k 
-            if Xadd.contains(zeros(2, 1)) % If Xadd contains the origin, the contraint can be expressed as C1*x<=1
+            if Xadd.contains(zeros(Xadd.Dim, 1)) % If Xadd contains the origin, the contraint can be expressed as C1*x<=1
                 [F_add, ~, nc_add] = convert_Poly2Mat(Xadd, Polyhedron());
                 C_ineq2_add = ones(nc_add, 1);
                 

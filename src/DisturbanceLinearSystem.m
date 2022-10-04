@@ -19,6 +19,9 @@ classdef DisturbanceLinearSystem < LinearSystem
             x_new = propagate@LinearSystem(obj, x, u) + w;
         end
 
+        function x_new = propagate1(obj, x, u, w)
+            x_new = propagate1@LinearSystem(obj, x, u) + w;
+        end
     end
 
     methods (Access = public)
@@ -61,7 +64,11 @@ classdef DisturbanceLinearSystem < LinearSystem
                 Ms = max(mss);
                 it = it+1;
             end
-
+            
+            if s >= 6
+                s = 6;
+            end
+            
             Fs = obj.W;
             for i =1:s-1
                 Fs = Fs+obj.Ak^i*obj.W;
